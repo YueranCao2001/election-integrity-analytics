@@ -151,6 +151,69 @@ streamlit run app.py
 - Data anomaly detection case study
 - Explainable AI demonstration
 
+## 📊 Results & Interpretation
+
+### 1. Turnout Rate Distribution
+
+![Turnout](outputs/turnout_distribution.png)
+
+The simulated turnout rates are centered around typical participation levels, with most precincts falling between **60% and 80% turnout**. A small number of precincts exhibit unusually high turnout, which may warrant further review in anomaly detection workflows.
+
+---
+
+### 2. Absentee Voting Share Distribution
+
+![Absentee](outputs/absentee_distribution.png)
+
+Most precincts display absentee voting shares between **15% and 35%**, reflecting normal variation in mail voting usage. A few extreme outliers show significantly elevated absentee shares, representing potential irregular patterns for administrative review.
+
+---
+
+### 3. Anomaly Score Distribution
+
+![Anomaly Score](outputs/anomaly_score_distribution.png)
+
+The Isolation Forest model assigns anomaly scores across precincts. Most precincts cluster in the normal range, while a smaller subset receives substantially lower scores and is flagged as anomalous.
+
+These anomalies may correspond to:
+
+- unusually high turnout
+- abnormal absentee ballot concentration
+- extreme candidate vote imbalance
+- elevated provisional ballot counts
+
+---
+
+### 4. Explainable Flagging
+
+Example flagged precinct explanations:
+
+```
+P0021 – unusually high turnout rate
+P0047 – high absentee vote share
+P0113 – abnormal provisional ballot volume
+```
+
+This improves transparency by showing why a precinct was flagged rather than relying solely on black-box model outputs.
+
+### 5. Policy Relevance
+
+This project does not claim fraud detection.
+
+Instead, it demonstrates how quantitative tools may assist:
+
+- post-election audits
+- recount prioritization
+- administrative review workflows
+- election operations research
+
+## Key Findings
+
+- 300 simulated precincts analyzed
+- 15 precincts flagged by anomaly model
+- Interactive dashboard with rule assistant deployed locally
+- Explainable AI used for transparency
+
 ## ⚖️ Disclaimer
 
 This project does not detect or claim election fraud.
