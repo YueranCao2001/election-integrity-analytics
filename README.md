@@ -207,7 +207,7 @@ Instead, it demonstrates how quantitative tools may assist:
 - administrative review workflows
 - election operations research
 
-###  Results Interpretation
+###  6. Results Interpretation
 
 ![result](outputs/dashboard_screenshot1.png)
 
