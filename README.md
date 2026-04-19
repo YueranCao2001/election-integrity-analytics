@@ -207,6 +207,21 @@ Instead, it demonstrates how quantitative tools may assist:
 - administrative review workflows
 - election operations research
 
+###  Results Interpretation
+
+![result](outputs/dashboard_screenshot1.png)
+
+#### Turnout vs. Absentee Share
+
+Most precincts fall within normal turnout and absentee voting ranges.  
+Flagged precincts appear as outliers with unusually high turnout, elevated absentee shares, or rare combinations of voting behavior.
+
+#### Flagged Anomaly Types
+
+Among flagged precincts, the most common categories involve turnout spikes, provisional ballot spikes, and absentee voting anomalies.
+
+These results illustrate how data analytics may support election oversight by identifying cases for additional review.
+
 ## Key Findings
 
 - 300 simulated precincts analyzed
