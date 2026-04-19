@@ -78,7 +78,7 @@ Explanation Layer
 Dashboard + Rules Assistant
 ```
 
-## Project Architecture
+## 📂 Project Architecture
 
 ```
 election-analytics/
@@ -91,8 +91,7 @@ election-analytics/
 │   ├── anomaly_explanations.csv
 │   ├── turnout_distribution.png
 │   ├── absentee_distribution.png
-│   ├── anomaly_score_distribution.png
-│   └── dashboard_screenshot.png
+│   └── anomaly_score_distribution.png
 │
 ├── src/
 │   ├── simulation.py
@@ -104,7 +103,8 @@ election-analytics/
 ├── app.py
 ├── README.md
 ├── requirements.txt
-└── .gitignore
+├── .gitignore
+└── LICENSE
 ```
 
 ## ⚙️ Tech Stack
