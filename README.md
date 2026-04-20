@@ -1,20 +1,81 @@
-# Election Integrity Analytics Platform
+# 🗳️ Election Integrity Analytics Dashboard
 
-> A data-driven decision support system for election oversight, anomaly detection, and procedural rule lookup.
+An interactive analytics platform that simulates precinct-level election data, detects unusual voting patterns, and provides interpretable explanations aligned with election administration procedures.
 
----
-
-## 📌 Overview
-
-This project explores how quantitative tools may complement modern election administration systems.
-
-Using a Minnesota-inspired election framework, the system simulates precinct-level election outcomes, detects unusual voting patterns, explains anomalies, and connects observations to legal / procedural election rules such as recounts and audits.
-
-This project is designed for **research, education, and analytics purposes**.
+Built using **Python**, **Pandas**, **Scikit-learn**, **Matplotlib**, and **Streamlit**.
 
 ---
 
-## Interactive Dashboard Overview
+# 📌 Project Motivation
+
+Election systems rely on transparency, audits, recount procedures, and administrative safeguards to maintain public trust.
+
+This project explores how lightweight data analytics tools may help identify **unusual precinct-level patterns** that could justify closer administrative review.
+
+Importantly, the system is **not designed to detect fraud or make legal accusations**.  
+Instead, it demonstrates how analytics can support oversight, explainability, and policy understanding.
+
+---
+
+# 🚀 Key Features
+
+### 📊 Simulated Election Dataset
+
+Generates realistic precinct-level election data including:
+
+- Registered voters
+- Turnout rate
+- Election Day voting
+- Early voting
+- Absentee/mail voting
+- Provisional ballots
+- Candidate vote totals
+
+---
+
+### 🤖 Anomaly Detection Engine
+
+Uses unsupervised anomaly detection to flag precincts with unusual patterns such as:
+
+- Extremely high turnout
+- Elevated absentee voting share
+- Provisional ballot spikes
+- Rare combinations of voting behavior
+- Extreme vote concentration
+
+---
+
+### 🧠 Explainable Analytics
+
+Each flagged precinct receives a human-readable explanation.
+
+Examples:
+
+- Mild vote concentration toward Candidate B (93%)
+- Unusually high absentee voting share relative to peer precincts
+- Extreme provisional ballot spike requiring review
+
+---
+
+### 📘 Election Rules Assistant
+
+A lightweight rule-based assistant that explains Minnesota election procedures:
+
+- Recount rules
+- Absentee voting procedures
+- Post-election audits
+- Voter registration
+- Voting equipment types
+
+Interactive rule lookup system supporting questions such as:
+
+- What triggers recount in Minnesota?
+- How does absentee voting work?
+- What audits are required?
+
+---
+
+### 📈 Interactive Dashboard Overview
 
 The project includes a Streamlit-based interactive dashboard that allows users to explore simulated election data, anomaly detection results, and election procedure rules in a visual and user-friendly format.
 
@@ -45,49 +106,26 @@ The dashboard demonstrates how data analytics and interpretable AI tools can sup
 
 ---
 
-## 🚀 Core Features
+## 📊 Example Insights
 
-### 📊 Precinct-Level Election Simulation
+### Turnout vs Absentee Share
 
-Generate synthetic election data across precincts including:
+Most precincts cluster within normal administrative ranges.
 
-- registered voters
-- turnout rates
-- absentee voting share
-- early voting share
-- provisional ballots
-- candidate vote totals
+Flagged precincts appear as outliers with unusual turnout, absentee voting, or combined behaviors.
 
----
+### Flagged Anomaly Types
 
-### ⚠️ Anomaly Detection Engine
+Detected anomalies commonly involve:
 
-Uses Isolation Forest to identify unusual precinct-level patterns such as:
+- Turnout spikes
+- Absentee spikes
+- Provisional ballot spikes
+- Vote concentration patterns
 
-- abnormally high turnout
-- absentee vote spikes
-- skewed vote distributions
-- unusual provisional ballot volume
+These signals are designed for administrative review rather than enforcement.
 
 ---
-
-### 🧠 Explainable Analytics
-
-Each flagged precinct receives interpretable explanations.
-
-Example:
-
-```
-P0023 flagged for unusually high absentee vote share (0.87)
-```
-
-## 📘 Election Rules Assistant
-
-Interactive rule lookup system supporting questions such as:
-
-- What triggers recount in Minnesota?
-- How does absentee voting work?
-- What audits are required?
 
 ## 🏗️ System Architecture
 
@@ -107,29 +145,27 @@ Dashboard + Rules Assistant
 
 ```
 election-analytics/
-│
-├── data/
+│── data/
 │   └── simulated_election_data.csv
 │
-├── outputs/
+│── outputs/
 │   ├── anomaly_results.csv
 │   ├── anomaly_explanations.csv
 │   ├── turnout_distribution.png
 │   ├── absentee_distribution.png
-│   └── anomaly_score_distribution.png
+│   ├── anomaly_score_distribution.png
+│   └── dashboard_screenshot.png
 │
-├── src/
+│── src/
 │   ├── simulation.py
 │   ├── anomaly.py
 │   ├── explain.py
 │   ├── rules.py
 │   └── visualization.py
 │
-├── app.py
-├── README.md
-├── requirements.txt
-├── .gitignore
-└── LICENSE
+│── app.py
+│── requirements.txt
+│── README.md
 ```
 
 ## ⚙️ Tech Stack
@@ -247,12 +283,27 @@ Among flagged precincts, the most common categories involve turnout spikes, prov
 
 These results illustrate how data analytics may support election oversight by identifying cases for additional review.
 
+---
+
 ## Key Findings
 
 - 300 simulated precincts analyzed
 - 15 precincts flagged by anomaly model
 - Interactive dashboard with rule assistant deployed locally
 - Explainable AI used for transparency
+
+---
+
+## 🏛️ Governance Perspective
+
+This project emphasizes that:
+
+- Unusual patterns are **not proof of misconduct**
+- Analytics should **support review**, not replace officials
+- Explainability is essential in public-sector systems
+- Human judgment remains central in election administration
+
+---
 
 ## ⚖️ Disclaimer
 
