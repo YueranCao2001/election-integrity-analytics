@@ -212,7 +212,7 @@ streamlit run app.py
 - Data anomaly detection case study
 - Explainable AI demonstration
 
-## 📊 Results & Interpretation
+## 📊 Experimental Results & Interpretation
 
 ### 1. Turnout Rate Distribution
 
@@ -250,23 +250,28 @@ These anomalies may correspond to:
 Example flagged precinct explanations:
 
 ```
-P0021 – unusually high turnout rate
-P0047 – high absentee vote share
-P0113 – abnormal provisional ballot volume
+P0021 – turnout rate significantly exceeds peer precinct average
+P0047 – absentee voting share unusually high relative to county norm
+P0113 – provisional ballot volume exceeds expected operational range
 ```
 
 This improves transparency by showing why a precinct was flagged rather than relying solely on black-box model outputs.
 
-### 5. Policy Relevance
+---
 
-This project does not claim fraud detection.
+### 5. Governance Relevance
 
-Instead, it demonstrates how quantitative tools may assist:
+This project does not attempt to detect fraud or assign misconduct.
+
+Instead, it demonstrates how interpretable analytics may assist:
 
 - post-election audits
 - recount prioritization
-- administrative review workflows
-- election operations research
+- operational anomaly review
+- public-sector transparency workflows
+- election administration research
+
+---
 
 ###  6. Results Interpretation
 
@@ -287,21 +292,11 @@ These results illustrate how data analytics may support election oversight by id
 
 ## Key Findings
 
-- 300 simulated precincts analyzed
-- 15 precincts flagged by anomaly model
-- Interactive dashboard with rule assistant deployed locally
-- Explainable AI used for transparency
-
----
-
-## 🏛️ Governance Perspective
-
-This project emphasizes that:
-
-- Unusual patterns are **not proof of misconduct**
-- Analytics should **support review**, not replace officials
-- Explainability is essential in public-sector systems
-- Human judgment remains central in election administration
+- Simulated and analyzed 300 precinct-level election records
+- Detected 15 statistically unusual precinct patterns via Isolation Forest
+- Built an interactive Streamlit dashboard for public-sector analytics
+- Added explainable AI outputs for transparent anomaly interpretation
+- Integrated rule-based election policy assistant for Minnesota procedures
 
 ---
 
@@ -310,6 +305,8 @@ This project emphasizes that:
 This project does not detect or claim election fraud.
 
 It demonstrates how analytical tools may support existing election oversight mechanisms.
+
+---
 
 ## Future Work
 
