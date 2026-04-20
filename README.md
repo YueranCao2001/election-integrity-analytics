@@ -14,9 +14,32 @@ This project is designed for **research, education, and analytics purposes**.
 
 ---
 
-## 🖼️ Dashboard Preview
+## Interactive Dashboard Overview
 
-![Dashboard](outputs/dashboard_screenshot.png)
+The project includes a Streamlit-based interactive dashboard that allows users to explore simulated election data, anomaly detection results, and election procedure rules in a visual and user-friendly format.
+
+Key dashboard functions include:
+
+- **Election Summary Metrics**: Displays total precincts, flagged anomalies, average turnout, and absentee voting share.
+- **Distribution Analysis**: Visualizes turnout rates and absentee voting behavior across precincts.
+- **Outlier Detection View**: Highlights flagged precincts that deviate from normal voting patterns.
+- **Scatter Plot Exploration**: Compares turnout and absentee share to identify unusual combinations.
+- **Anomaly Type Breakdown**: Summarizes the categories of detected anomalies (turnout spikes, absentee spikes, provisional ballot spikes, etc.).
+- **Precinct Search Tool**: Allows users to inspect detailed statistics for any selected precinct.
+- **Rules Assistant**: Provides quick natural-language explanations of Minnesota election procedures such as recounts, absentee voting, and audits.
+
+The dashboard demonstrates how data analytics and interpretable AI tools can support election transparency, administrative review, and policy understanding.
+
+![Dashboard](outputs/dashboard_screenshot2.png)
+![Dashboard](outputs/dashboard_screenshot1.png)
+![Dashboard](outputs/dashboard_screenshot3.png)
+![Dashboard](outputs/dashboard_screenshot4.png)
+![Dashboard](outputs/dashboard_screenshot5.png)
+![Dashboard](outputs/dashboard_screenshot6.png)
+![Dashboard](outputs/dashboard_screenshot7.png)
+![Dashboard](outputs/dashboard_screenshot8.png)
+![Dashboard](outputs/dashboard_screenshot9.png)
+![Dashboard](outputs/dashboard_screenshot10.png)
 
 ---
 
