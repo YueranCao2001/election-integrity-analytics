@@ -32,13 +32,15 @@ The dashboard demonstrates how data analytics and interpretable AI tools can sup
 
 ![Dashboard](outputs/dashboard_screenshot2.png)
 ![Dashboard](outputs/dashboard_screenshot1.png)
-![Dashboard](outputs/dashboard_screenshot3.png)
-![Dashboard](outputs/dashboard_screenshot4.png)
-![Dashboard](outputs/dashboard_screenshot5.png)
-![Dashboard](outputs/dashboard_screenshot6.png)
-![Dashboard](outputs/dashboard_screenshot7.png)
-![Dashboard](outputs/dashboard_screenshot8.png)
+![Dashboard](outputs/dashboard3.png)
+![Dashboard](outputs/dashboard4.png)
+![Dashboard](outputs/dashboard5.png)
+![Dashboard](outputs/dashboard6.png)
+![Dashboard](outputs/dashboard7.png)
+![Dashboard](outputs/dashboard8.png)
 ![Dashboard](outputs/dashboard_screenshot9.png)
+![Dashboard](outputs/dashboard9.png)
+![Dashboard](outputs/dashboard10.png)
 ![Dashboard](outputs/dashboard_screenshot10.png)
 
 ---
