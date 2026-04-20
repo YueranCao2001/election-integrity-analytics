@@ -1,84 +1,106 @@
-import os
 import pandas as pd
 
 
-def explain_row(row: pd.Series) -> str:
-    """
-    Generate a human-readable explanation for why a precinct
-    may have been flagged as anomalous.
-    """
-    reasons = []
+def generate_explanation(row):
+    score = row["anomaly_score"]
+    risk = row["risk_level"]
 
-    # Threshold-based interpretations
-    if row["turnout_rate"] > 0.90:
-        reasons.append(f"very high turnout rate ({row['turnout_rate']:.2f})")
+    turnout = row["turnout_rate"]
+    absentee = row["absentee_share"]
+    provisional = row["provisional_votes"]
 
-    if row["absentee_share"] > 0.60:
-        reasons.append(f"unusually high absentee vote share ({row['absentee_share']:.2f})")
-
-    if row["provisional_votes"] > 40:
-        reasons.append(f"unusually high provisional ballot count ({int(row['provisional_votes'])})")
+    cand_a = row["candidate_a_votes"]
+    cand_b = row["candidate_b_votes"]
 
     total_votes = max(row["total_votes"], 1)
-    candidate_a_share = row["candidate_a_votes"] / total_votes
-    candidate_b_share = row["candidate_b_votes"] / total_votes
 
-    if candidate_a_share > 0.90:
-        reasons.append(f"extreme vote skew toward Candidate A ({candidate_a_share:.2f})")
+    share_a = cand_a / total_votes
+    share_b = cand_b / total_votes
 
-    if candidate_b_share > 0.90:
-        reasons.append(f"extreme vote skew toward Candidate B ({candidate_b_share:.2f})")
+    # --------------------------
+    # wording by risk level
+    # --------------------------
+    if risk == "High":
+        turnout_word = "extremely high"
+        absentee_word = "extremely high"
+        provisional_word = "extreme spike in"
+        skew_word = "extreme vote concentration toward"
 
-    if row["anomaly_score"] < 0:
-        reasons.append(f"very low anomaly score ({row['anomaly_score']:.4f})")
+    elif risk == "Medium":
+        turnout_word = "unusually high"
+        absentee_word = "unusually high"
+        provisional_word = "unusual increase in"
+        skew_word = "notable vote concentration toward"
 
-    if not reasons:
-        reasons.append("combination of unusual voting patterns across multiple variables")
+    else:
+        turnout_word = "moderately elevated"
+        absentee_word = "moderately elevated"
+        provisional_word = "mild increase in"
+        skew_word = "mild vote concentration toward"
 
-    return "; ".join(reasons)
+    explanations = []
+
+    # turnout
+    if turnout > 0.90:
+        explanations.append(
+            f"{turnout_word} turnout rate ({turnout:.2f})"
+        )
+
+    # absentee
+    if absentee > 0.50:
+        explanations.append(
+            f"{absentee_word} absentee voting share ({absentee:.2f})"
+        )
+
+    # provisional
+    if provisional > 80:
+        explanations.append(
+            f"{provisional_word} provisional ballots ({provisional})"
+        )
+
+    # vote skew
+    if share_a > 0.90:
+        explanations.append(
+            f"{skew_word} Candidate A ({share_a:.2f})"
+        )
+
+    elif share_b > 0.90:
+        explanations.append(
+            f"{skew_word} Candidate B ({share_b:.2f})"
+        )
+
+    # fallback
+    if not explanations:
+        if risk == "High":
+            return "Multiple indicators deviate substantially from normal precinct patterns."
+        elif risk == "Medium":
+            return "Several indicators appear unusual relative to peer precincts."
+        else:
+            return "Minor variation observed within generally normal precinct ranges."
+
+    return "; ".join(explanations)
 
 
-def build_explanations(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Add explanation text for anomalous precincts.
-    """
-    df = df.copy()
-    df["explanation"] = df.apply(explain_row, axis=1)
-    return df
+def main():
+    df = pd.read_csv("outputs/anomaly_results.csv")
 
+    # Ensure risk level exists
+    if "risk_level" not in df.columns:
+        def risk(score):
+            if score < -0.05:
+                return "High"
+            elif score < 0:
+                return "Medium"
+            else:
+                return "Low"
 
-def main() -> None:
-    input_path = os.path.join("outputs", "anomaly_results.csv")
-    output_path = os.path.join("outputs", "anomaly_explanations.csv")
+        df["risk_level"] = df["anomaly_score"].apply(risk)
 
-    df = pd.read_csv(input_path)
+    df["explanation"] = df.apply(generate_explanation, axis=1)
 
-    explained_df = build_explanations(df)
+    df.to_csv("outputs/anomaly_explanations.csv", index=False)
 
-    # Save full results
-    explained_df.to_csv(output_path, index=False)
-
-    # Show top flagged precincts
-    flagged = explained_df[explained_df["anomaly_label"] == -1].sort_values("anomaly_score")
-
-    print(f"Saved explanations to: {output_path}")
-    print("\nTop flagged precincts with explanations:\n")
-
-    print(
-        flagged[
-            [
-                "precinct_id",
-                "turnout_rate",
-                "absentee_share",
-                "provisional_votes",
-                "candidate_a_votes",
-                "candidate_b_votes",
-                "anomaly_score",
-                "is_injected_anomaly",
-                "explanation",
-            ]
-        ].head(10).to_string(index=False)
-    )
+    print("Saved: outputs/anomaly_explanations.csv")
 
 
 if __name__ == "__main__":
